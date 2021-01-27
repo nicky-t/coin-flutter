@@ -32,12 +32,12 @@ const List<String> cryptoList = [
   'LTC',
 ];
 
-const apiUrl = 'https://rest.coinapi.io/v1/exchangerate/BTC/USD?apikey=';
+const apiUrl = 'https://rest.coinapi.io/v1/exchangerate';
 const apiKey = '166CB176-B3B4-4551-8E9C-A07805E46BFE';
 
 class CoinData {
-  Future getCoinData() async {
-    http.Response response = await http.get('$apiUrl$apiKey');
+  Future getCoinData(String currency) async {
+    http.Response response = await http.get('$apiUrl/BTC/$currency?apikey=$apiKey');
 
     if (response.statusCode == 200) {
       var decodedData = jsonDecode(response.body);
